@@ -25,10 +25,11 @@ export const findOne = async (
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.end(user);
+  } else {
+    res.statusCode = 404;
+    res.end(`User with id: ${userId} was not found!`);
   }
 
-  res.statusCode = 404;
-  res.end(`User with id: ${userId} was not found!`);
 };
 
 export const deleteUser = async (
