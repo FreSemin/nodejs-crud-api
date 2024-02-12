@@ -39,6 +39,7 @@ export const createUser = async (
     });
   });
 
+  res.statusCode = 201;
   res.setHeader('Content-Type', 'application/json');
   res.end(newUser);
 };
