@@ -1,20 +1,25 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { usersRouter } from './users.router';
 
+const getReqRoute = (path?: string) => {
+  if (!path) {
+    return '';
+  }
+
+  if (path.startsWith('/api/users')) {
+    return 'users';
+  }
+};
+
 export const router = (req: IncomingMessage, res: ServerResponse): void => {
-  // parse
-  // add type
-  const parsedUrl = req.url;
+  const reqRoute = getReqRoute(req.url);
+  
+  console.log('reqRoute: ', reqRoute);
 
-  console.log('parsedUrl: ', parsedUrl);
-
-  switch (parsedUrl) {
-    // start with?
-    case '/users':
+  switch (reqRoute) {
+    case 'users':
+      console.log('in req');
       usersRouter(req, res);
-
-      // console.log('users');
-      // res.end('users');
       break;
 
     default:

@@ -17,7 +17,7 @@ export class Server {
 
   start(port: number): void {
     this.server?.listen(port, () => {
-      console.log(`[Server:] Started on port: ${port}`);
+      console.log(`[Server Worker:] Started on port: ${port}`);
     });
   }
 }

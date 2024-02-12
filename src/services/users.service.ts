@@ -1,6 +1,5 @@
 import { usersMockData } from '../mocks/users.mock';
 
-// make it singlton
 class UsersService {
   private static instance: UsersService;
 
