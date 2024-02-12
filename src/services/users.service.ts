@@ -49,6 +49,10 @@ class UsersService {
 
     const searchedUser = users.find((user: any) => user.id === userId);
 
+    if (!searchedUser) {
+      return null;
+    }
+
     return JSON.stringify(searchedUser);
   }
 

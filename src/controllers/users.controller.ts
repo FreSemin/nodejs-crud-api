@@ -21,9 +21,14 @@ export const findOne = async (
   // add type
   const user = await UsersService.findOne(userId);
 
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.end(user);
+  if (user) {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(user);
+  }
+
+  res.statusCode = 404;
+  res.end(`User with id: ${userId} was not found!`);
 };
 
 export const deleteUser = async (
