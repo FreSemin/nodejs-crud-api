@@ -20,6 +20,7 @@ export const deleteUser = async (
 ): Promise<void> => {
   await UsersService.delete(userId);
 
+  res.statusCode = 204;
   res.end('ok');
 };
 
