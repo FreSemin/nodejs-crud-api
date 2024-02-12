@@ -1,8 +1,9 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { findAll } from '../controllers/users.controller';
+import * as usersController from '../controllers/users.controller';
 
 enum reqMethods {
   GET = 'GET',
+  DELETE = 'DELETE',
 }
 
 const parseUsersUrl = (url: string = ''): string[] => {
@@ -15,13 +16,27 @@ export const usersRouter = (
 ): void => {
   const parsedUrl = parseUsersUrl(req.url);
 
-  if (req.method === reqMethods.GET) {
-    // TODO: validate uuid
-    // Check is ID exists
-    if (parsedUrl[2]) {
-      // TODO: get user by id
-    } else {
-      findAll(req, res);
+  switch (req.method) {
+    case reqMethods.GET: {
+      // TODO: validate uuid
+      // Check is ID exists
+      if (parsedUrl[2]) {
+        // TODO: get user by id
+      } else {
+        usersController.findAll(req, res);
+      }
+      break;
     }
+
+    case reqMethods.DELETE: {
+      if (parsedUrl[2]) {
+        usersController.deleteUser(req, res, parsedUrl[2]);
+      }
+      break;
+    }
+
+    default:
+      res.end('not existing user req');
+      break;
   }
 };

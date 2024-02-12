@@ -11,3 +11,13 @@ export const findAll = async (
   res.setHeader('Content-Type', 'application/json');
   res.end(users);
 };
+
+export const deleteUser = async (
+  req: IncomingMessage,
+  res: ServerResponse,
+  userId: string,
+): Promise<void> => {
+  await UsersService.delete(userId);
+
+  res.end('ok');
+};
