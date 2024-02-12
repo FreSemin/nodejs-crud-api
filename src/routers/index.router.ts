@@ -14,11 +14,8 @@ const getReqRoute = (path?: string) => {
 export const router = (req: IncomingMessage, res: ServerResponse): void => {
   const reqRoute = getReqRoute(req.url);
   
-  console.log('reqRoute: ', reqRoute);
-
   switch (reqRoute) {
     case 'users':
-      console.log('in req');
       usersRouter(req, res);
       break;
 

@@ -13,6 +13,11 @@
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\""
   },
+  "nodemonConfig": {
+    "ignore": [
+      "/db/users.json"
+    ]
+  },
   "devDependencies": {
     "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^6.21.0",

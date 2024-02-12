@@ -30,6 +30,18 @@ class UsersService {
     return await getUsersData();
   }
 
+  async createUser(newUser: string) {
+    const user = JSON.parse(newUser);
+
+    const usersData = JSON.parse(await getUsersData());
+
+    usersData.push(user);
+
+    await setUsersData(JSON.stringify(usersData));
+
+    return newUser;
+  }
+
   async delete(userId: string) {
     const usersData = await getUsersData();
 

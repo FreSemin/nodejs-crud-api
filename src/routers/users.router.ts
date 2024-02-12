@@ -4,6 +4,7 @@ import * as usersController from '../controllers/users.controller';
 enum reqMethods {
   GET = 'GET',
   DELETE = 'DELETE',
+  POST = 'POST',
 }
 
 const parseUsersUrl = (url: string = ''): string[] => {
@@ -25,6 +26,12 @@ export const usersRouter = (
       } else {
         usersController.findAll(req, res);
       }
+      break;
+    }
+
+    case reqMethods.POST: {
+      usersController.createUser(req, res);
+
       break;
     }
 

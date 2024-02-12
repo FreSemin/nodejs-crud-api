@@ -18,7 +18,7 @@ if (cluster.isPrimary) {
 
   balancer.start(port);
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < numCPUs; i++) {
     const serverClusterPort = portForClusters + i;
 
     const serverCluster = cluster.fork({ port: serverClusterPort });

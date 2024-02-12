@@ -21,22 +21,25 @@ export class Balancer {
       'request',
       async (req: IncomingMessage, res: ServerResponse) => {
         const clusterForRequest: ClusterInfo = this.getNextCluster();
-        // console.log('cluster.workers: ',);
 
-        console.log('clusterForRequest.port: ', clusterForRequest.port);
+        let reqData = '';
 
-        // add port dynamicly
-        //
-        // if post then headers to set content type
+        reqData = await new Promise((resolve, reject) => {
+          let data = '';
+          req.on('data', (chunk) => {
+            data += chunk;
+          });
+          req.on('end', () => {
+            resolve(data);
+          });
+        });
+
         const options = {
           hostname: 'localhost',
           port: clusterForRequest.port,
           path: req.url,
           method: req.method,
-          // headers: {
-          //   'Content-Type': 'application/json',
-          //   'Content-Length': Buffer.byteLength(postData),
-          // },
+          headers: req.headers,
         };
 
         const reqRes: {
@@ -63,12 +66,12 @@ export class Balancer {
             reject();
           });
 
+          workerReq.write(reqData);
           workerReq.end();
         });
 
         res.writeHead(reqRes.status, reqRes.headers);
         res.end(reqRes.data);
-        // res.end();
       },
     );
   }
