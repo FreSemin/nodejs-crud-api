@@ -6,6 +6,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "removeComments": true,
+    "rootDir": "./src",
     "forceConsistentCasingInFileNames": false,
     "strict": true,
     "sourceMap": true,
