@@ -1,14 +1,18 @@
-import { usersMockData } from '../mocks/users.mock';
+// import { usersMockData } from '../mocks/users.mock';
+import path from 'node:path';
+
+import { readFile } from 'node:fs/promises';
+
+const getUsersData = async () => {
+  return await readFile(path.join(process.cwd(), 'db', 'users.json'), {
+    encoding: 'utf8',
+  });
+};
 
 class UsersService {
   private static instance: UsersService;
 
-  // add type
-  private data;
-
-  constructor() {
-    this.data = usersMockData;
-  }
+  constructor() {}
 
   static getInstance(): UsersService {
     if (!UsersService.instance) {
@@ -18,8 +22,8 @@ class UsersService {
     return UsersService.instance;
   }
 
-  findAll() {
-    return this.data;
+  async findAll() {
+    return await getUsersData();
   }
 }
 

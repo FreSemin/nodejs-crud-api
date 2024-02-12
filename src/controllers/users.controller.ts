@@ -1,13 +1,13 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import UsersService from '../services/users.service';
 
-// export class
-
-// add return type
-export const findAll = (req: IncomingMessage, res: ServerResponse) => {
-  // service find all
+export const findAll = async (
+  req: IncomingMessage,
+  res: ServerResponse,
+): Promise<void> => {
   // add type
-  const users = UsersService.findAll();
+  const users = await UsersService.findAll();
 
-  res.end(JSON.stringify(users));
+  res.setHeader('Content-Type', 'application/json');
+  res.end(users);
 };
