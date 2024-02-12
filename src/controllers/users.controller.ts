@@ -8,6 +8,7 @@ export const findAll = async (
   // add type
   const users = await UsersService.findAll();
 
+  res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.end(users);
 };
