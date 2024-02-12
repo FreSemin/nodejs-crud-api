@@ -43,7 +43,8 @@ export const usersRouter = (
     }
 
     default:
-      res.end('not existing user req');
+      res.statusCode = 404;
+      res.end('Requested path not exists');
       break;
   }
 };

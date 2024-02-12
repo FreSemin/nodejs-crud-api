@@ -20,8 +20,8 @@ export const router = (req: IncomingMessage, res: ServerResponse): void => {
       break;
 
     default:
-      res.statusCode = 400;
-      res.end('not existing path');
+      res.statusCode = 404;
+      res.end('Requested path not exists');
       break;
   }
 };
