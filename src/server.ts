@@ -1,4 +1,5 @@
 import http, { IncomingMessage, ServerResponse } from 'node:http';
+import { router } from './routers/index.router';
 
 export class Server {
   private server: http.Server | null = null;
@@ -9,6 +10,9 @@ export class Server {
 
   private init(): void {
     this.server = http.createServer();
+    this.server.on('request', (req: IncomingMessage, res: ServerResponse) => {
+      router(req, res);
+    });
   }
 
   start(port: number): void {
