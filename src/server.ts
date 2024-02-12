@@ -9,16 +9,11 @@ export class Server {
 
   private init(): void {
     this.server = http.createServer();
-    this.server.on('request', (req: IncomingMessage, res: ServerResponse) => {
-      console.log('req.url: ', req.url);
-      console.log('res.method: ', req.method);
-      res.end('hello');
-    });
   }
 
   start(port: number): void {
     this.server?.listen(port, () => {
-      console.log(`start on ${port}`);
+      console.log(`[Server:] Started on port: ${port}`);
     });
   }
 }
