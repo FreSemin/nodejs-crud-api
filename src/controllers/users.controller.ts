@@ -13,6 +13,19 @@ export const findAll = async (
   res.end(users);
 };
 
+export const findOne = async (
+  req: IncomingMessage,
+  res: ServerResponse,
+  userId: string,
+): Promise<void> => {
+  // add type
+  const user = await UsersService.findOne(userId);
+
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(user);
+};
+
 export const deleteUser = async (
   req: IncomingMessage,
   res: ServerResponse,

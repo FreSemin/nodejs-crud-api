@@ -22,7 +22,7 @@ export const usersRouter = (
       // TODO: validate uuid
       // Check is ID exists
       if (parsedUrl[2]) {
-        // TODO: get user by id
+        usersController.findOne(req, res, parsedUrl[2]);
       } else {
         usersController.findAll(req, res);
       }

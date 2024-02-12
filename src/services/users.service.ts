@@ -42,6 +42,16 @@ class UsersService {
     return newUser;
   }
 
+  async findOne(userId: string) {
+    const usersData = await getUsersData();
+
+    const users = JSON.parse(usersData);
+
+    const searchedUser = users.find((user: any) => user.id === userId);
+
+    return JSON.stringify(searchedUser);
+  }
+
   async delete(userId: string) {
     const usersData = await getUsersData();
 
