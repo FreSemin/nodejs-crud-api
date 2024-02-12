@@ -4,5 +4,14 @@
   "description": "",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "prettier": "3.2.5"
+  }
 }
